@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home/screens/colors/solo.dart';
 import 'package:home/screens/details.dart';
 import 'package:home/screens/home_screen.dart';
 import 'package:home/screens/login.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/details':(_)=>DetailsScreen(),
         '/login':(_)=>Login(),
         '/register':(_)=>Register(),
+        '/solo':(_)=>SoloTravel(),
       },
     );
   }

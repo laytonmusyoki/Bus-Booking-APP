@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Page"),
+        title: const Text("Home Page",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
         backgroundColor: Colors.blue,
       ),
       drawer: const mainDrawer(),
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 GestureDetector(
                   onTap: ()=>{
-                    Navigator.of(context).pushNamed('/login')
+                    Navigator.of(context).pushNamed('/solo')
                   },
                   child: Container(
                     width: 200,
