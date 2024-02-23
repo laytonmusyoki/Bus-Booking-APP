@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Icon(Icons.local_shipping,size: 80,color: Colors.green.withOpacity(0.6),),
                             SizedBox(height: 10,),
                             Text(
-                              "Percel cending",
+                              "Percel sending",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 22,
