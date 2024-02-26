@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:home/screens/details.dart';
+import 'package:home/screens/login.dart';
 import 'package:home/screens/main_drawer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+final supabase=Supabase.instance.client;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,13 +17,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    Future <void> signOut() async{
+      await supabase.auth.signOut();
+      if(!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('You have been logged out')));
+      Navigator.of(context).pushNamed('/');
+    }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title:  Container(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Home Page",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-              Icon(Icons.logout)
+              IconButton(
+                onPressed: signOut,
+                icon: Icon(Icons.logout,color: Colors.white,),
+              )
             ],
           ),
         )

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Travel',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -32,8 +32,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home':(_)=>HomeScreen(),
         '/details':(_)=>DetailsScreen(),
-        '/login':(_)=>Login(),
-        '/':(_)=>Register(),
+        '/':(_)=>Login(),
+        '/register':(_)=>Register(),
         '/solo':(_)=>SoloTravel(),
       },
     );

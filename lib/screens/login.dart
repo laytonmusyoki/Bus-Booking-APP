@@ -1,4 +1,8 @@
+
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+final supabase=Supabase.instance.client;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -10,16 +14,34 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
+    final email=TextEditingController();
+    final password=TextEditingController();
+
+    Future submitData() async{
+      try{
+       final authResponse=await supabase.auth.signInWithPassword(password: password.text.trim(),email: email.text.trim());
+        if(!mounted) return;
+        else{
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged in as ${authResponse.user!.email!}')));
+          Navigator.of(context).pushNamed('/home');
+        }
+
+      }
+      on AuthException catch(e){
+        print(e);
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         // title: Text("Login page"),
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
-          onPressed: ()=>{
-            Navigator.of(context).pop()
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(Icons.arrow_back_ios,color: Colors.white,),
+        //   onPressed: ()=>{
+        //     Navigator.of(context).pop()
+        //   },
+        // ),
         backgroundColor: Colors.blue,
       ),
       body: Container(
@@ -32,12 +54,13 @@ class _LoginState extends State<Login> {
             Image.asset('assets/images/img.jpg',height: 130,),
             SizedBox(height: 20,),
             TextField(
+              controller: email,
               style: TextStyle(
                 color: Colors.black54,
                 fontSize: 20
               ),
               decoration: InputDecoration(
-                hintText: "Username",
+                hintText: "Enter email",
                 contentPadding: EdgeInsets.all(15),
                 filled: true,
                 fillColor: Colors.white,
@@ -53,13 +76,14 @@ class _LoginState extends State<Login> {
             ),
             SizedBox(height: 20,),
             TextField(
+              controller: password,
               obscureText: true,
               style: TextStyle(
                   color: Colors.black54,
                   fontSize: 20
               ),
               decoration: InputDecoration(
-                  hintText: "Password",
+                  hintText: "Enter password",
                   contentPadding: EdgeInsets.all(15),
                   filled: true,
                   fillColor: Colors.white,
@@ -83,13 +107,15 @@ class _LoginState extends State<Login> {
               ),
               child: TextButton(
                 child: Text("Login",style: TextStyle(fontSize: 20,color: Colors.white),),
-                onPressed: ()=>{},
+                onPressed: (){
+                  submitData();
+                },
               ),
             ),
             SizedBox(height: 20,),
             GestureDetector(
               onTap: ()=>{
-                Navigator.of(context).pushNamed('/')
+                Navigator.of(context).pushNamed('/register')
               },
               child:RichText(
                 text: TextSpan(

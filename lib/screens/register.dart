@@ -141,7 +141,7 @@ class _RegisterState extends State<Register> {
                   try{
                     final authResponse=await supabase.auth.signUp(email:email.text.trim(),password: password.text.trim(),data: {'username':username.text.trim(),'phone':phone.text.trim()});
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged as ${authResponse.user!.email!}')));
-                    if(! mounted) return;
+                    // if(! mounted) return;
                     Navigator.of(context).pushNamed('/home');
                   }
                   on AuthException catch(e){
@@ -153,7 +153,7 @@ class _RegisterState extends State<Register> {
             SizedBox(height: 20,),
             GestureDetector(
                 onTap: ()=>{
-                  Navigator.of(context).pushNamed('/login')
+                  Navigator.of(context).pushNamed('/')
                 },
                 child:RichText(
                   text: TextSpan(
