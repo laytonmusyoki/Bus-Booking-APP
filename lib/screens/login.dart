@@ -89,7 +89,7 @@ class _LoginState extends State<Login> {
             SizedBox(height: 20,),
             GestureDetector(
               onTap: ()=>{
-                Navigator.of(context).pushNamed('/register')
+                Navigator.of(context).pushNamed('/')
               },
               child:RichText(
                 text: TextSpan(
