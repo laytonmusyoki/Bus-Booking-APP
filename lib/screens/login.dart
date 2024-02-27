@@ -22,13 +22,16 @@ class _LoginState extends State<Login> {
        final authResponse=await supabase.auth.signInWithPassword(password: password.text.trim(),email: email.text.trim());
         if(!mounted) return;
         else{
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged in as ${authResponse.user!.email!}')));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged in as ${authResponse.user!.email!}',style: TextStyle(color: Colors.green),)));
           Navigator.of(context).pushNamed('/home');
         }
 
       }
       on AuthException catch(e){
-        print(e);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${e.message}',style: TextStyle(color: Colors.red),),behavior: SnackBarBehavior.floating,
+            margin: EdgeInsets.all(10), // Margin to adjust the position
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15)));
+
       }
     }
 
