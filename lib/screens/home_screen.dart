@@ -51,7 +51,10 @@ class _HomeScreenState extends State<HomeScreen> {
                child: Container(
                  width: double.infinity,
                  height: 250,
-                 color: Color.fromARGB(255, 4, 190, 138),
+                 decoration: BoxDecoration(
+                   color: Color.fromARGB(255, 4, 190, 138),
+                   borderRadius: BorderRadius.circular(10),
+                 ),
                ),
              ),
              SizedBox(height: 20,),
@@ -71,19 +74,46 @@ class _HomeScreenState extends State<HomeScreen> {
                          width: 300,
                          decoration: BoxDecoration(
                            color: Colors.green.withOpacity(0.2),
-                           borderRadius: BorderRadius.circular(20)
+                           borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                            BoxShadow(
+                            color: Colors.white.withOpacity(0.8),
+                            blurRadius: 7,
+                            spreadRadius: 5,
+                            offset: Offset(0,3),
+
+                            )
+                            ]
                          ),
                          child: Center(
                            child: Column(
+                             mainAxisAlignment: MainAxisAlignment.center,
                              children: [
                                Text(
                                  "Solo Travel",
                                  style: TextStyle(
-                                   fontWeight: FontWeight.bold,
-                                   color: Colors.grey,
-                                   fontSize: 30
+                                     fontWeight: FontWeight.bold,
+                                     color: Colors.grey,
+                                     fontSize: 30
                                  ),
-                               )
+                               ),
+                               Container(
+                                 width: 60,
+                                   height: 60,
+                                   decoration: BoxDecoration(
+                                     color: Colors.brown.withOpacity(0.4),
+                                     borderRadius: BorderRadius.circular(100),
+                                     boxShadow: [
+                                       BoxShadow(
+                                         blurRadius: 7,
+                                         spreadRadius: 5,
+                                         offset: Offset(0,3),
+                                         color: Colors.white.withOpacity(0.3)
+                                       )
+                                     ]
+                                   ),
+                                   child: Icon(Icons.person,size: 50,)),
+
                              ],
                            ),
                          ),

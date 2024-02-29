@@ -30,9 +30,9 @@ class MyApp extends StatelessWidget {
       // home: HomeScreen(),
       // initialRoute: '/details',
       routes: {
-        '/home':(_)=>HomeScreen(),
+        '/':(_)=>HomeScreen(),
         '/details':(_)=>DetailsScreen(),
-        '/':(_)=>Login(),
+        '/login':(_)=>Login(),
         '/register':(_)=>Register(),
         '/solo':(_)=>SoloTravel(),
       },
