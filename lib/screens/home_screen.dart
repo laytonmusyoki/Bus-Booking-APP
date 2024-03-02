@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final currentindex=0;
     Future <void> signOut() async{
       await supabase.auth.signOut();
       if(!mounted) return;
@@ -41,6 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         )
 
+      ),
+      bottomNavigationBar: NavigationBar(
+        destinations: [
+          NavigationDestination(icon: Icon(Icons.home), label: "Home"),
+          NavigationDestination(icon: Icon(Icons.book), label: "Bookings"),
+          NavigationDestination(icon: Icon(Icons.person), label: "Profile")
+        ],
       ),
       drawer: const mainDrawer(),
      body: ListView(
@@ -119,12 +127,12 @@ class _HomeScreenState extends State<HomeScreen> {
                  ),
                ),
              ),
-             SizedBox(height: 20,),
+             SizedBox(height: 10,),
              Text(
                "Categories",
                style: TextStyle(
                  fontWeight: FontWeight.bold,
-                 fontSize: 40,
+                 fontSize: 37,
                  color: Colors.grey,
                ),
              ),
@@ -331,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
                  ),
                ),
              ),
-             const SizedBox(height: 20,),
+             const SizedBox(height: 10,),
              Padding(
                padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
                child: Container(
@@ -356,6 +364,7 @@ class _HomeScreenState extends State<HomeScreen> {
      ),
     );
   }
+
 
 }
 
